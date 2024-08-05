@@ -17,18 +17,21 @@ const userSchema = new mongoose.Schema({
         required: true,
         lowercase: true,
         unique: true,
-        trim: true
+        trim: true,
+        index: true // for searchable
     },
     email: {
         type: String,
         required: true,
         lowercase: true,
         unique: true,
+        trim: true
     },
     fullName:{
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        index: true
     },
     avatar: {
         type: String, //cloudinary
@@ -39,11 +42,10 @@ const userSchema = new mongoose.Schema({
     },
     password:{
         type: String,
-        required: true,
+        required: [true, "password is required"],
     },
     refreshToken: {
         type: String,
-        required: true,
     }
 },{timestamps: true})
 
