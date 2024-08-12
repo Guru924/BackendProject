@@ -3,11 +3,7 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
 const userSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
+    
     watchHistory: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -45,15 +41,17 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "password is required"],
+        select: false
     },
     refreshToken: {
         type: String,
+        select: false
     }
 }, { timestamps: true })
 
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password, 10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 
