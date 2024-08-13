@@ -41,11 +41,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "password is required"],
-        select: false
+        // select: false
     },
     refreshToken: {
         type: String,
-        select: false
+        // select: false
     }
 }, { timestamps: true })
 
