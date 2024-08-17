@@ -1,11 +1,6 @@
 import mongoose from "mongoose"
 
 const likeSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     comment: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment",

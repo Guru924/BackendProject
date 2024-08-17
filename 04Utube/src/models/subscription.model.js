@@ -1,11 +1,6 @@
 import mongoose from "mongoose"
 
 const subscriptionSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     subscriber: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
