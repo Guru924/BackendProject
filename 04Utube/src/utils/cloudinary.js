@@ -1,4 +1,5 @@
 import {v2 as cloudinary} from 'cloudinary'
+import { error } from 'console';
 import fs from "fs"
 
 cloudinary.config({
@@ -20,6 +21,7 @@ const uploadOnCloudinary = async(localFilePath)=>{
     //        console.log(error);
     //    });
     console.log("file is uploaded on cloudinary",uploadResult.url)
+    fs.unlinkSync(localFilePath);
     return uploadResult
     } catch (error) {
         fs.unlinkSync(localFilePath); //Remove the local file if upload fails
@@ -27,4 +29,20 @@ const uploadOnCloudinary = async(localFilePath)=>{
     }
 }
 
-export {uploadOnCloudinary}
+const deleteOnCloudinary = async(url)=> {
+    try {
+        if(!url) console.log("Invalid url")
+        const parts = url.split('/')
+        const publicIdWithExtension = parts.pop() // get the last part of fileName
+        const publicId = publicIdWithExtension.split('.')[0] //remove the file extension
+    
+        await cloudinary.uploader.destroy(publicId, (error, result)=>{
+            if(error) console.log("Error deleting image:", error);
+            else console.log("Image deleted successfully", result);
+        })
+    } catch (error) {
+        
+    }
+}
+
+export {uploadOnCloudinary, deleteOnCloudinary}
