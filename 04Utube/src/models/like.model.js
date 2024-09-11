@@ -4,7 +4,6 @@ const likeSchema = new mongoose.Schema({
     comment: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment",
-        required: true
     },
     video: {
         type: mongoose.Schema.Types.ObjectId,
