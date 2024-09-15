@@ -2,11 +2,6 @@ import mongoose from "mongoose";
 import aggregatePaginate from 'mongoose-aggregate-paginate-v2'
 
 const videoSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     videoFile: {
         type: String, //url
         required: true
