@@ -31,17 +31,17 @@ const uploadOnCloudinary = async(localFilePath)=>{
 
 const deleteOnCloudinary = async(url)=> {
     try {
-        if(!url) console.log("Invalid url")
+        if(!url) return null
         const parts = url.split('/')
         const publicIdWithExtension = parts.pop() // get the last part of fileName
         const publicId = publicIdWithExtension.split('.')[0] //remove the file extension
     
         await cloudinary.uploader.destroy(publicId, (error, result)=>{
-            if(error) console.log("Error deleting image:", error);
-            else console.log("Image deleted successfully", result);
+            if(error) console.log("Error deleting file:", error);
+            else console.log("File deleted successfully", result);
         })
     } catch (error) {
-        
+        return null;
     }
 }
 
