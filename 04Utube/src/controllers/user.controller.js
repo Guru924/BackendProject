@@ -84,7 +84,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // const createdUser = await User.findById(user._id);
 
   if (!createdUser)
-    throw new Error(500, "Something went while registering the user");
+    throw new ApiErrorError(500, "Something went while registering the user");
 
   return res
     .status(201)
